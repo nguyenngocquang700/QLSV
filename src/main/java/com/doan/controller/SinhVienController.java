@@ -1,11 +1,13 @@
 package com.doan.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
@@ -34,6 +36,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.doan.entity.Sinhvien;
+import com.doan.crypto.Hash;
 import com.doan.entity.Lop;
 
 @Transactional
@@ -80,6 +83,14 @@ public class SinhVienController {
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 		try {
+			Sinhvien sv1 = new Sinhvien();
+			sv1.setMasv(sv.getMasv());
+			sv1.setHoten(sv.getHoten());
+			sv1.setNgaysinh(sv.getNgaysinh());
+			sv1.setDiachi(sv.getDiachi());
+			sv1.setLop(sv.getLop());
+			sv1.setTendn(sv.getTendn());
+			sv1.setMatkhau(Hash.convertSHA1(sv.getMatkhau()));
 			session.save(sv);
 			t.commit();
 			model.addAttribute("message", "Thêm mới Sinh viên thành công !");
@@ -91,6 +102,23 @@ public class SinhVienController {
 			session.close();
 		}
 		return "admin/new-sv";
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		Session session;
+		try {
+			session = factory.getCurrentSession();	
+		} catch (HibernateException e) {
+			// TODO: handle exception
+			session = factory.openSession();
+		}
+		String hql = "SELECT malop FROM Lop";
+		Query<Lop> query = session.createQuery(hql);
+		List<Lop> list = query.list();
+		System.out.println(list);
+		request.setAttribute("lop", list);
+		request.getRequestDispatcher("admin/new-sv").forward(request, response);
 	}
 	
 	@ModelAttribute("listlop")

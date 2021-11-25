@@ -52,7 +52,7 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		p:url="jdbc:sqlserver://localhost:1433; Database=QLSVNhom"
+		p:url="jdbc:sqlserver://localhost:1433; Database=QLSVNhom10"
 		p:username="sa" p:password="1" />
 
 

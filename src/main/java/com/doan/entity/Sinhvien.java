@@ -22,7 +22,7 @@ public class Sinhvien implements Serializable {
 
 	@Id
 	@Column(name="MASV")
-	private String masv;
+	private String masv = "";
 
 	@Column(name="DIACHI")
 	private String diachi;
@@ -31,12 +31,15 @@ public class Sinhvien implements Serializable {
 	private String hoten;
 
 	@Column(name="MATKHAU")
-	private String matkhau;
+	private byte[] matkhau;
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	@Column(name="NGAYSINH")
 	private Date ngaysinh;
+	
+	@Column(name="TENDN")
+	private String tendn;
 
 	//bi-directional many-to-one association to Bangdiem
 	@OneToMany(mappedBy="sinhvien")
@@ -50,8 +53,8 @@ public class Sinhvien implements Serializable {
 	public Sinhvien() {
 	}
 
-	public Sinhvien(String masv, String diachi, String hoten, String matkhau, Date ngaysinh,
-			List<Bangdiem> bangdiems, Lop lop) {
+	public Sinhvien(String masv, String diachi, String hoten, byte[] matkhau, Date ngaysinh,
+			List<Bangdiem> bangdiems, Lop lop, String tendn) {
 		super();
 		this.masv = masv;
 		this.diachi = diachi;
@@ -60,6 +63,7 @@ public class Sinhvien implements Serializable {
 		this.ngaysinh = ngaysinh;
 		this.bangdiems = bangdiems;
 		this.lop = lop;
+		this.tendn = tendn;
 	}
 
 	public String getMasv() {
@@ -86,11 +90,11 @@ public class Sinhvien implements Serializable {
 		this.hoten = hoten;
 	}
 
-	public String getMatkhau() {
+	public byte[] getMatkhau() {
 		return this.matkhau;
 	}
 
-	public void setMatkhau(String matkhau) {
+	public void setMatkhau(byte[] matkhau) {
 		this.matkhau = matkhau;
 	}
 
@@ -100,6 +104,14 @@ public class Sinhvien implements Serializable {
 
 	public void setNgaysinh(Date ngaysinh) {
 		this.ngaysinh = ngaysinh;
+	}
+
+	public String getTendn() {
+		return tendn;
+	}
+
+	public void setTendn(String tendn) {
+		this.tendn = tendn;
 	}
 
 	public List<Bangdiem> getBangdiems() {

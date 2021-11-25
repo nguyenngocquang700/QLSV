@@ -2,6 +2,8 @@ package com.doan.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -16,7 +18,7 @@ public class Nhanvien implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="MANV")
 	private String manv;
 
@@ -27,10 +29,10 @@ public class Nhanvien implements Serializable {
 	private String hoten;
 
 	@Column(name="LUONG")
-	private String luong;
+	private byte[] luong;
 
 	@Column(name="MATKHAU")
-	private String matkhau;
+	private byte[] matkhau;
 
 	@Column(name="PUBKEY")
 	private String pubkey;
@@ -45,7 +47,7 @@ public class Nhanvien implements Serializable {
 	public Nhanvien() {
 	}
 
-	public Nhanvien(String manv, String email, String hoten, String luong, String matkhau, String pubkey, String tendn,
+	public Nhanvien(String manv, String email, String hoten, byte[] luong, byte[] matkhau, String pubkey, String tendn,
 			List<Lop> lops) {
 		super();
 		this.manv = manv;
@@ -82,19 +84,19 @@ public class Nhanvien implements Serializable {
 		this.hoten = hoten;
 	}
 
-	public String getLuong() {
+	public byte[] getLuong() {
 		return this.luong;
 	}
 
-	public void setLuong(String luong) {
+	public void setLuong(byte[] luong) {
 		this.luong = luong;
 	}
 
-	public String getMatkhau() {
+	public byte[] getMatkhau() {
 		return this.matkhau;
 	}
 
-	public void setMatkhau(String matkhau) {
+	public void setMatkhau(byte[] matkhau) {
 		this.matkhau = matkhau;
 	}
 
@@ -134,6 +136,13 @@ public class Nhanvien implements Serializable {
 		lop.setNhanvien(null);
 
 		return lop;
+	}
+
+	@Override
+	public String toString() {
+		return "Nhanvien [manv=" + manv + ", email=" + email + ", hoten=" + hoten + ", luong=" + Arrays.toString(luong)
+				+ ", matkhau=" + Arrays.toString(matkhau) + ", pubkey=" + pubkey + ", tendn=" + tendn + ", lops=" + lops
+				+ "]";
 	}
 
 }

@@ -89,11 +89,11 @@ public class Lop implements Serializable {
 		return sinhvien;
 	}
 
-	@Override
-	public String toString() {
-		return "Lop [malop=" + malop + ", tenlop=" + tenlop + ", nhanvien=" + nhanvien + ", sinhviens=" + sinhviens
-				+ "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Lop [malop=" + malop + ", tenlop=" + tenlop + ", nhanvien=" + nhanvien + ", sinhviens=" + sinhviens
+//				+ "]";
+//	}
 
 	
 }

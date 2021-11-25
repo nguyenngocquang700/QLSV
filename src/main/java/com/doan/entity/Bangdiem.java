@@ -18,7 +18,7 @@ public class Bangdiem implements Serializable {
 	private BangdiemPK id;
 
 	@Column(name="DIEMTHI")
-	private String diemthi;
+	private byte[] diemthi;
 
 	//bi-directional many-to-one association to Hocphan
 	@ManyToOne
@@ -33,7 +33,7 @@ public class Bangdiem implements Serializable {
 	public Bangdiem() {
 	}
 
-	public Bangdiem(BangdiemPK id, String diemthi, Hocphan hocphan, Sinhvien sinhvien) {
+	public Bangdiem(BangdiemPK id, byte[] diemthi, Hocphan hocphan, Sinhvien sinhvien) {
 		super();
 		this.id = id;
 		this.diemthi = diemthi;
@@ -49,11 +49,11 @@ public class Bangdiem implements Serializable {
 		this.id = id;
 	}
 
-	public String getDiemthi() {
+	public byte[] getDiemthi() {
 		return this.diemthi;
 	}
 
-	public void setDiemthi(String diemthi) {
+	public void setDiemthi(byte[] diemthi) {
 		this.diemthi = diemthi;
 	}
 
