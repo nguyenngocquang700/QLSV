@@ -15,21 +15,14 @@
 		</param-value>
 	</context-param>
 	<!-- Loads Spring Security config file -->
-	<!-- <context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			/WEB-INF/context/spring-security.xml
-		</param-value>
-	</context-param>
-		<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/admin**</url-pattern>
-	</filter-mapping> -->
+	<!-- <context-param> <param-name>contextConfigLocation</param-name> <param-value> 
+		/WEB-INF/context/spring-security.xml </param-value> </context-param> <filter> 
+		<filter-name>springSecurityFilterChain</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+		</filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> 
+		<url-pattern>/admin**</url-pattern> </filter-mapping> -->
+	<error-page>
+		<location>/errors</location>
+	</error-page>
 	<context-param>
 		<param-name>defaultHtmlEscape</param-name>
 		<param-value>true</param-value>
@@ -91,20 +84,9 @@
 	</session-config>
 
 	<!-- Loads Spring Security config file -->
-<!-- 	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
-      /WEB-INF/spring-security.xml
-    </param-value>
-	</context-param>
-	Spring Security
-	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
- -->
+	<!-- <context-param> <param-name>contextConfigLocation</param-name> <param-value> 
+		/WEB-INF/spring-security.xml </param-value> </context-param> Spring Security 
+		<filter> <filter-name>springSecurityFilterChain</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+		</filter> <filter-mapping> <filter-name>springSecurityFilterChain</filter-name> 
+		<url-pattern>/*</url-pattern> </filter-mapping> -->
 </web-app>

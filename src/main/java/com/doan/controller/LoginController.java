@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
@@ -67,7 +68,7 @@ public class LoginController {
 		model.addAttribute("reset-acc", nv);
 		return "reset-password";
 	}
-	
+
 	public List<Nhanvien> getByUser(String name, SessionFactory factory) {
 		Session session;
 		try {
@@ -135,7 +136,7 @@ public class LoginController {
 		session = factory.openSession();
 		String CHANGEPASS_REQUIRED = "FROM Nhanvien WHERE tendn = :tendn";
 		String hqltendn = "FROM Nhanvien WHERE tendn = :tendn";
-		
+
 		List<Nhanvien> CHANGEPASS_REQUIRED_LIST = session.createQuery(hqltendn).setString("tendn", tendn).list();
 		System.out.println("CHANGEPASS_REQUIRED_LIST:" + CHANGEPASS_REQUIRED_LIST);
 
@@ -211,9 +212,9 @@ public class LoginController {
 	// PASSWORD============================================
 
 	@RequestMapping(value = "reset-password", method = RequestMethod.POST)
-	public String ResetPassword(HttpSession httpSession, HttpServletResponse response, RedirectAttributes re, @RequestParam("tendn") String tendn,
-			@RequestParam("oldpass") String oldpass, @RequestParam("newpass") String newpass,
-			@RequestParam("retypepass") String retypepass) {
+	public String ResetPassword(HttpSession httpSession, HttpServletResponse response, RedirectAttributes re,
+			@RequestParam("tendn") String tendn, @RequestParam("oldpass") String oldpass,
+			@RequestParam("newpass") String newpass, @RequestParam("retypepass") String retypepass) {
 		String hql = "FROM Nhanvien WHERE tendn = :tendn AND matkhau = :matkhau";
 		Session session = factory.openSession();
 		List<Nhanvien> list = session.createQuery(hql).setString("tendn", tendn)
@@ -227,7 +228,7 @@ public class LoginController {
 		boolean checkpass = oldpass.equals(newpass);
 		System.out.println(checkpass);
 		if (retypepass.equals(newpass)) {
-			
+
 			session.clear();
 			session = factory.openSession();
 			Transaction t = session.beginTransaction();
@@ -251,4 +252,13 @@ public class LoginController {
 		return "redirect:admin";
 	}
 
+	// ===============================LOGOUT==========================================
+	@RequestMapping(value = "/logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+		return "redirect:/login"; // Where you go after logout here.
+	}
 }
