@@ -25,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.doan.entity.Lop;
+import com.doan.entity.Nhanvien;
+
 
 
 //import com.nhom26.entity.CountStaffModel;
@@ -32,14 +35,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller(value = "homeControllerOfAdmin")
 public class HomeController {
 	
-//	@Autowired
-//	SessionFactory factory;
-//	
-////	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-////	public ModelAndView dashboardPage() {
-////		ModelAndView mav = new ModelAndView("admin/dashboard");
-////		return mav;
-////	}
+	@Autowired
+	SessionFactory factory;
+	
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public ModelAndView dashboardPage() {
+		ModelAndView mav = new ModelAndView("admin/dashboard");
+		return mav;
+	}
 //	
 //	@RequestMapping(value = "/admin")
 //	public String listCheckStaff(ModelMap model) {
@@ -70,37 +73,39 @@ public class HomeController {
 //		return "admin/dashboard";
 //	}
 //	
-//	@ModelAttribute("TotalStaff")
-//	public int getNhanvien() {
-//
-//		Session session;
-//		try {
-//			session = factory.getCurrentSession();
-//		} catch (HibernateException e) {
-//			// TODO: handle exception
-//			session = factory.openSession();
-//		}
-//		String hql = "SELECT MaNV FROM NhanVienEntity";
-//		Query<NhanVienEntity> query = session.createQuery(hql);
-//		List<NhanVienEntity> list = query.list();
-//		return list.size();
-//	}
-//	
-//	@ModelAttribute("TotalDepart")
-//	public int getDepartment() {
-//
-//		Session session;
-//		try {
-//			session = factory.getCurrentSession();
-//		} catch (HibernateException e) {
-//			// TODO: handle exception
-//			session = factory.openSession();
-//		}
-//		String hql = "SELECT maPB FROM DepartmentEntity";
-//		Query<NhanVienEntity> query = session.createQuery(hql);
-//		List<NhanVienEntity> list = query.list();
-//		return list.size();
-//	}
+	@ModelAttribute("total-nhanvien")
+	public int getNhanvien() {
+
+		Session session;
+		try {
+			session = factory.getCurrentSession();
+		} catch (HibernateException e) {
+			// TODO: handle exception
+			session = factory.openSession();
+		}
+		String hql = "SELECT manv FROM Nhanvien";
+		Query<Nhanvien> query = session.createQuery(hql);
+		List<Nhanvien> list = query.list();
+		System.out.println(list.size());
+		return list.size();
+	}
+	
+	@ModelAttribute("total-lop")
+	public int getDepartment() {
+
+		Session session;
+		try {
+			session = factory.getCurrentSession();
+		} catch (HibernateException e) {
+			// TODO: handle exception
+			session = factory.openSession();
+		}
+		String hql = "SELECT malop FROM Lop";
+		Query<Lop> query = session.createQuery(hql);
+		List<Lop> list = query.list();
+		System.out.println(list.size());
+		return list.size();
+	}
 //	
 //	@ModelAttribute("TotalCheckin")
 //	public int getCheckin() {

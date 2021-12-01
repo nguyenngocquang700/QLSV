@@ -39,6 +39,9 @@ public class Nhanvien implements Serializable {
 
 	@Column(name="TENDN")
 	private String tendn;
+	
+	@Column(name="CHANGEPW")
+	private int changepw;
 
 	//bi-directional many-to-one association to Lop
 	@OneToMany(mappedBy="nhanvien")
@@ -47,8 +50,10 @@ public class Nhanvien implements Serializable {
 	public Nhanvien() {
 	}
 
+
+
 	public Nhanvien(String manv, String email, String hoten, byte[] luong, byte[] matkhau, String pubkey, String tendn,
-			List<Lop> lops) {
+			int changepw, List<Lop> lops) {
 		super();
 		this.manv = manv;
 		this.email = email;
@@ -57,8 +62,11 @@ public class Nhanvien implements Serializable {
 		this.matkhau = matkhau;
 		this.pubkey = pubkey;
 		this.tendn = tendn;
+		this.changepw = changepw;
 		this.lops = lops;
 	}
+
+
 
 	public String getManv() {
 		return this.manv;
@@ -108,7 +116,7 @@ public class Nhanvien implements Serializable {
 		this.pubkey = pubkey;
 	}
 
-	public Object getTendn() {
+	public String getTendn() {
 		return this.tendn;
 	}
 
@@ -123,6 +131,20 @@ public class Nhanvien implements Serializable {
 	public void setLops(List<Lop> lops) {
 		this.lops = lops;
 	}
+	
+	
+
+	public int getChangepw() {
+		return changepw;
+	}
+
+
+
+	public void setChangepw(int changepw) {
+		this.changepw = changepw;
+	}
+
+
 
 	public Lop addLop(Lop lop) {
 		getLops().add(lop);
@@ -138,11 +160,17 @@ public class Nhanvien implements Serializable {
 		return lop;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Nhanvien [manv=" + manv + ", email=" + email + ", hoten=" + hoten + ", luong=" + Arrays.toString(luong)
-				+ ", matkhau=" + Arrays.toString(matkhau) + ", pubkey=" + pubkey + ", tendn=" + tendn + ", lops=" + lops
-				+ "]";
+				+ ", matkhau=" + Arrays.toString(matkhau) + ", pubkey=" + pubkey + ", tendn=" + tendn + ", changepw="
+				+ changepw + ", lops=" + lops + "]";
 	}
+
+
+
+	
 
 }

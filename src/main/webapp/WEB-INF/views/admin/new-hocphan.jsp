@@ -7,7 +7,7 @@
 	<div class="page-title">
 		<div class="row">
 			<div class="col-12 col-md-6 order-md-1 order-last">
-				<h3>Thêm Mới Tài Khoản</h3>
+				<h3>Thêm Mới Phòng Ban</h3>
 			</div>
 			<div class="col-12 col-md-6 order-md-2 order-first">
 				<nav aria-label="breadcrumb"
@@ -15,70 +15,52 @@
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
 						<li class="breadcrumb-item active" aria-current="page">Thêm
-							Mới Tài Khoản</li>
+							Mới Học Phần</li>
 					</ol>
 				</nav>
 			</div>
-			<c:if test="${message.equals('Thêm mới thành công !')}">
+			<c:if test="${success!=null}">
 				<div class="alert alert-success alert-dismissible show fade">
-					${message}
+					${success}
 					<button type="button" class="btn-close" data-bs-dismiss="alert"
 						aria-label="Close"></button>
 				</div>
 			</c:if>
-			<c:if test="${message.equals('Thêm mới thất bại !')}">
+			<c:if test="${error!=null}">
 				<div class="alert alert-danger alert-dismissible show fade">
-					${message}
+					${error}
 					<button type="button" class="btn-close" data-bs-dismiss="alert"
 						aria-label="Close"></button>
 				</div>
 			</c:if>
 		</div>
 	</div>
-	<form:form action="admin/newuser" modelAttribute="user" method="POST">
+	<form action="admin/new-hocphan" method="POST">
 		<section class="section">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title">Thông Tin Tài Khoản</h4>
+					<h4 class="card-title">Thông Tin Học Phần</h4>
 				</div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-6">
-							<fieldset class="form-group">
-								<h6>Mã Nhân Viên</h6>
-								<form:select path="staff.MaNV" class="form-select"
-									id="role_modal">
-									<%-- <form:option value="" label="-MANV-" /> --%>
-									<form:options items="${listStaff}" />
-								</form:select>
-							</fieldset>
 							<div class="form-group">
-								<h6>Username</h6>
-								<form:input path="username" type="text" class="form-control"
-									id="basicInput" placeholder="Tên Tài Khoản" />
+								<h6>Mã Học Phần</h6>
+								<input name="mahp" type="text" class="form-control"
+									id="basicInput" placeholder="Nhập mã học phần..." />
 							</div>
 							<div class="form-group">
-								<h6>Password</h6>
-								<form:input path="password" type="password" class="form-control"
-									id="basicInput" placeholder="Mật Khẩu" />
+								<h6>Tên học phần</h6>
+								<input name="tenhp" type="text" class="form-control"
+									id="basicInput" placeholder="Nhập tên học phần..." />
 							</div>
 						</div>
 						<div class="col-md-6">
-							<fieldset class="form-group">
-								<h6>Role</h6>
-								<form:select path="role.role" class="form-select"
-									items="${listRole}">
-								</form:select>
-							</fieldset>
-							<fieldset class="form-group">
-								<h6>Trạng Thái</h6>
-								<form:select path="status" class="form-select" type="hidden"
-									typeclass="form-select" id="status_modal">
-									<%-- <form:option value="" label="-Trạng thái-" /> --%>
-									<option value="Active">Active</option>
-									<option value="Inactive">Inactive</option>
-								</form:select>
-							</fieldset>
+							<div class="form-group col-md-12">
+								<h6>Số Tín Chỉ</h6>
+								<input name="sotc" type="text" class="form-control"
+									id="basicInput" placeholder="Nhập số tín chỉ.." />
+							</div>
 						</div>
 					</div>
 				</div>
@@ -89,5 +71,5 @@
 				Thành</button>
 			<button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
 		</div>
-	</form:form>
+	</form>
 </div>

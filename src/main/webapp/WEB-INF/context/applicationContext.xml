@@ -30,23 +30,23 @@
 		value="ptithcm" /> <property name="password" value="ptithcm2019" /> </bean> -->
 
 	<!-- Mail -->
-	<bean id="mailSender"
-		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="khtran210600@gmail.com" />
-		<property name="password" value="zjyjwwfwmjpbiztt" />
-		<property name="defaultEncoding" value="UTF-8" />
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
-				<prop key="mail.smtp.socketFactory.port">587</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.debug">true</prop>
-			</props>
-		</property>
-	</bean>
+	<bean id="mailSender" 
+	class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<property name="host" value="smtp.gmail.com" />
+	<property name="port" value="465" />	
+	<property name="username" value="hellowangg107@gmail.com" />
+	<property name="password" value="fivshnvxxtanpsnl" />
+ 	<property name="defaultEncoding" value="UTF-8"/> 
+	<property name="javaMailProperties">
+	   <props>
+       	      <prop key="mail.smtp.auth">true</prop>
+       	      <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+	       	  <prop key="mail.smtp.socketFactory.port">465</prop>
+       	      <prop key="mail.smtp.starttls.enable">false</prop>
+       	      <prop key="mail.debug">true</prop>
+       </props>
+	</property>	
+</bean>
 
 	<!-- Connect to DB -->
 	<bean id="dataSource"

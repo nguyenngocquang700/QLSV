@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.doan.entity.Lop;
 import com.doan.entity.Nhanvien;
 import com.doan.entity.Sinhvien;
 
@@ -44,7 +46,7 @@ public class NhanVienController {
 			List<Nhanvien> list = query.list();
 			System.out.print(list);
 			model.addAttribute("nhanvien", list);
-
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.print(e);
@@ -159,4 +161,6 @@ public class NhanVienController {
 		model.addAttribute("nhanvien", list);
 		return "redirect:list-nhanvien"; 
 	}
+	//===================================MODEL LIST======================================
+	
 }

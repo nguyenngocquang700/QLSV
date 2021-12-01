@@ -78,13 +78,13 @@ a.delete {
 					<tbody>
 						<c:forEach var="s" items="${nhanvien}">
 							<tr>
-								<td class="manv">${s.manv}</td>
-								<td class="hoten">${s.hoten}</td>
-								<td class="email">${s.email}</td>
-								<td class="luong">${s.luong}</td>
-								<td class="tendn">${s.tendn}</td>
-								<td class="matkhau">${s.matkhau}</td>
-								<td class="pubkey">${s.pubkey}</td>
+								<td class="manv"><c:out value="${s.manv}"/></td>
+								<td class="hoten"><c:out value="${s.hoten}"/></td>
+								<td class="email"><c:out value="${s.email}"/></td>
+								<td class="luong"><c:out value="${s.luong}"/></td>
+								<td class="tendn"><c:out value="${s.tendn}"/></td>
+								<td class="matkhau"><c:out value="${s.matkhau}"/></td>
+								<td class="pubkey"><c:out value="${s.pubkey}"/></td>
 								<td><a class="settings edit-btn" title="Settings"
 									type="button" href="javascript:" data-bs-toggle="modal"
 									data-bs-target="#NhanVienModal"><i class="material-icons">&#xe88e;</i>

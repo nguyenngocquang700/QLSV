@@ -73,12 +73,12 @@ a.delete {
 					<tbody>
 						<c:forEach var="s" items="${sinhvien}">
 							<tr>
-								<td class="manv">${s.masv}</td>
-								<td class="hoten">${s.hoten}</td>
-								<td class="ngaysinh">${s.ngaysinh}</td>
-								<td class="diachi">${s.diachi}</td>
-								<td class="malop">${s.lop.malop}</td>
-								<td class="matkhau">${s.matkhau}</td>
+								<td class="manv"><c:out value="${s.masv}"/></td>
+								<td class="hoten"><c:out value="${s.hoten}"/></td>
+								<td class="ngaysinh"><c:out value="${s.ngaysinh}"/></td>
+								<td class="diachi"><c:out value="${s.diachi}"/></td>
+								<td class="malop"><c:out value="${s.lop.malop}"/></td>
+								<td class="matkhau"><c:out value="${s.matkhau}"/></td>
 								<td><a class="settings edit-btn" title="Settings"
 									type="button" href="javascript:" data-bs-toggle="modal"
 									data-bs-target="#staffModal"><i class="material-icons">&#xe88e;</i>

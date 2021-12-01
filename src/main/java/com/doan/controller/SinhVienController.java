@@ -78,31 +78,31 @@ public class SinhVienController {
 		return "admin/new-sv";
 	}
 	
-	@RequestMapping(value = "/admin/new-sv", method = RequestMethod.POST)
-	public String newSV(ModelMap model, @ModelAttribute("sinhvien") Sinhvien sv) {
-		Session session = factory.openSession();
-		Transaction t = session.beginTransaction();
-		try {
-			Sinhvien sv1 = new Sinhvien();
-			sv1.setMasv(sv.getMasv());
-			sv1.setHoten(sv.getHoten());
-			sv1.setNgaysinh(sv.getNgaysinh());
-			sv1.setDiachi(sv.getDiachi());
-			sv1.setLop(sv.getLop());
-			sv1.setTendn(sv.getTendn());
-			sv1.setMatkhau(Hash.convertSHA1(sv.getMatkhau()));
-			session.save(sv);
-			t.commit();
-			model.addAttribute("message", "Thêm mới Sinh viên thành công !");
-		} catch (Exception e) {
-			e.printStackTrace();
-			t.rollback();
-			model.addAttribute("message", "Thêm mới Sinh viên thất bại !");
-		} finally {
-			session.close();
-		}
-		return "admin/new-sv";
-	}
+//	@RequestMapping(value = "/admin/new-sv", method = RequestMethod.POST)
+//	public String newSV(ModelMap model, @ModelAttribute("sinhvien") Sinhvien sv) {
+//		Session session = factory.openSession();
+//		Transaction t = session.beginTransaction();
+//		try {
+//			Sinhvien sv1 = new Sinhvien();
+//			sv1.setMasv(sv.getMasv());
+//			sv1.setHoten(sv.getHoten());
+//			sv1.setNgaysinh(sv.getNgaysinh());
+//			sv1.setDiachi(sv.getDiachi());
+//			sv1.setLop(sv.getLop());
+//			sv1.setTendn(sv.getTendn());
+//			sv1.setMatkhau(Hash.convertSHA1(sv.getMatkhau()));
+//			session.save(sv);
+//			t.commit();
+//			model.addAttribute("message", "Thêm mới Sinh viên thành công !");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			t.rollback();
+//			model.addAttribute("message", "Thêm mới Sinh viên thất bại !");
+//		} finally {
+//			session.close();
+//		}
+//		return "admin/new-sv";
+//	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");

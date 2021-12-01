@@ -17,18 +17,18 @@
 		base-package="com.doan.controller" />
 
 	<!-- Cấu hình interceptor -->
-	<!-- <mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**" />
 			<mvc:exclude-mapping path="/user/login.htm"/>
 			<bean class="com.doan.interceptor.AdminInterceptor" />
 		</mvc:interceptor>
-		<mvc:interceptor>
+		<!-- <mvc:interceptor>
 			<mvc:mapping path="/user/**" />
 			<bean class="com.doan.interceptor.UserInterceptor" />
-		</mvc:interceptor>
+		</mvc:interceptor> -->
 	</mvc:interceptors>
- -->
+
 
 
 

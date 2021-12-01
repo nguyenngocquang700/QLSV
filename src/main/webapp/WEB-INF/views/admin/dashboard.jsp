@@ -87,7 +87,7 @@
 								</div>
 								<div class="col-md-8">
 									<h6 class="text-muted font-semibold">Nhân Viên</h6>
-									<h6 class="font-extrabold mb-0">${TotalStaff}</h6>
+									<h6 class="font-extrabold mb-0">${total-nhanvien}</h6>
 								</div>
 							</div>
 						</div>
@@ -110,7 +110,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-6 col-lg-3 col-md-6">
+				<%-- <div class="col-6 col-lg-3 col-md-6">
 					<div class="card">
 						<div class="card-body px-3 py-4-5">
 							<div class="row">
@@ -144,7 +144,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 			<!-- <div class="row">
 				<div class="col-12">
 					<div class="card">
@@ -187,7 +187,7 @@
 					</div>
 				</div>
 			</div> -->
-			<div class="card">
+			<%-- <div class="card">
 				<div class="card-header">
 					<h4>Chấm Công Gần Đây</h4>
 				</div>
@@ -225,7 +225,7 @@
 							Chi Tiết</button>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 
 
 		</div>

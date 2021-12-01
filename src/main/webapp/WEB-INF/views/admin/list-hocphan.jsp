@@ -87,16 +87,16 @@ input.cmn-toggle-round:checked+label:after {
 						aria-label="Close"></button>
 				</div>
 			</c:if> --%>
-			<c:if test="${message.equals('Chỉnh sửa thông tin Học phần thành công!')}">
+			<c:if test="${success!=null}">
 				<div class="alert alert-success alert-dismissible show fade">
-					${message}
+					${success}
 					<button type="button" class="btn-close" data-bs-dismiss="alert"
 						aria-label="Close"></button>
 				</div>
 			</c:if>
-			<c:if test="${message.equals('Chỉnh sửa thất bại, kiểm tra lại thông tin Học phần!')}">
+			<c:if test="${error!=null}">
 				<div class="alert alert-danger alert-dismissible show fade">
-					${message}
+					${error}
 					<button type="button" class="btn-close" data-bs-dismiss="alert"
 						aria-label="Close"></button>
 				</div>
@@ -128,25 +128,15 @@ input.cmn-toggle-round:checked+label:after {
 					<tbody>
 						<c:forEach var="u" items="${hocphan}">
 							<tr>
-								<td class="mahp">${u.mahp}</td>
-								<td class="tenhp">${u.tenhp}</td>
-								<%-- <td class="passwd" style="display: none;">${u.password}</td> --%>
-								<td class="sotc">${u.sotc}</td>
-								<%-- <td class="role">${u.role.role}</td>
-								<td class="status"><c:if
-										test="${u.status.equals('Active')}">
-										<div class="badges">
-											<span class="badge bg-light-success">ACTIVE</span>
-										</div>
-									</c:if> <c:if test="${u.status != 'Active'}">
-										<div class="badges">
-											<span class="badge bg-light-danger">INACTIVE</span>
-										</div>
-									</c:if></td> --%>
+								<td class="mahp"><c:out value="${u.mahp}"/></td>
+								<td class="tenhp"><c:out value="${u.tenhp}"/></td>
+								<td class="sotc"><c:out value="${u.sotc}"/></td>
 								<td><a class="settings edit-btn" title="Settings"
 									type="button" href="javascript:" data-bs-toggle="modal"
-									data-bs-target="#EmployeeModal"><i class="material-icons">&#xe88e;</i>
-								</a></td>
+									data-bs-target="#HocPhanModal"><i class="material-icons">&#xe88e;</i>
+								</a><a href="javascript:" class="delete delete-btn" title="Delete"
+									data-bs-toggle="modal" data-bs-target="#DeleteModal"><i
+										class="material-icons">&#xE5C9;</i></a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -163,77 +153,79 @@ input.cmn-toggle-round:checked+label:after {
 
 			var currentRow = $(this).closest("tr");
 
-			var id_user = currentRow.find("td:eq(0)").text();
-			var uname = currentRow.find("td:eq(1)").text();
-			var passwd = currentRow.find("td:eq(2)").text();
-			var staffcode = currentRow.find("td:eq(3)").text();
-			var role = currentRow.find("td:eq(4)").text();
-			var status = currentRow.find("td:eq(5)").text();
+			var mahp = currentRow.find("td:eq(0)").text();
+			var tenhp = currentRow.find("td:eq(1)").text();
+			var sotc = currentRow.find("td:eq(2)").text();
 
 			// GETTING DATA TO SHOW ON MODEL
-			$('#id_modal').val(id_user);
-			$('#uname_modal').val(uname);
-			$('#passwd_modal').val(passwd);
-			$('#staffcode_modal').val(staffcode);
-			$('#role_modal').val(role);
-			$('#status_modal').val(status);
+			$('#mahp_modal').val(mahp);
+			$('#tenhp_modal').val(tenhp);
+			$('#sotc_modal').val(sotc);
 		});
 	});
+	$('#table1').on('click', '.delete-btn', function() {
+		let id = $(this).parents("tr").find(".majp").text();
+		let ten = $(this).parents("tr").find(".tenhp").text();
+		console.log(ten);
+		$('#info2del').text('Bạn có chắc chắn muốn xoá ' + ten + '?')
+		$('#info2del').parent().find('#mahp').val(id)
+	})
 </script>
 
-
-<div id="EmployeeModal" class="modal fade">
+<div id="DeleteModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<!-- MODEL BODY -->
-			<form action="admin/updateuser" method="POST">
+			<form action="admin/delete-hocphan" method="POST">
 				<section class="section">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="card-title">Thông Tin Tài Khoản</h4>
+							<h4 class="card-title" id="info2del"></h4>
+							<input type="hidden" name="mahp" id="mahp" />
+						</div>
+					</div>
+				</section>
+				<div class="col-sm-12 d-flex justify-content-end">
+					<button type="submit" class="btn btn-primary me-1 mb-1">Hoàn
+						Thành</button>
+					<button type="button" data-bs-dismiss="modal"
+						class="btn btn-light-secondary me-1 mb-1">Close</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div id="HocPhanModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- MODEL BODY -->
+			<form action="admin/update-hocphan" method="POST">
+				<section class="section">
+					<div class="card">
+						<div class="card-header">
+							<h4 class="card-title">Chỉnh Sửa Học Phầnn</h4>
 						</div>
 						<div class="card-body">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<h6>ID Tài Khoản</h6>
-										<input name="id" type="text" 
-											class="form-control" id="id_modal" placeholder="ID Tài Khoản" readonly="true"/>
+										<h6>Mã Học Phần</h6>
+										<input name="mahp" type="text" class="form-control"
+											id="mahp_modal" readonly="true"
+											placeholder="Nhập mã học phần..." />
 									</div>
 									<div class="form-group">
-										<h6>Tên Tài Khoản</h6>
-										<input name="username" type="text" class="form-control"
-											id="uname_modal" placeholder="Tên Tài Khoản" />
+										<h6>Tên Học Phần</h6>
+										<input name="tenhp" type="text" class="form-control"
+											id="tenhp_modal" placeholder="Nhập tên học phần..." />
 									</div>
-									<div class="form-group">
-										<h6>Mật Khẩu</h6>
-										<input name="password" type="password"
-											class="form-control" id="passwd_modal" placeholder="Mật Khẩu" />
-									</div>
-
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<h6>Mã Nhân Viên</h6>
-										<input name="MaNV" type="text" class="form-control"
-											 id="staffcode_modal" readonly="true"/>
+										<h6>Số Tín Chỉ</h6>
+										<input name="sotc" type="text" class="form-control"
+											id="sotc_modal" placeholder="Nhập số tín chỉ..." />
 									</div>
-									<fieldset class="form-group">
-										<h6>Role</h6>
-										<select name="role" class="form-select"
-											id="role_modal">
-											<option value="0" selected>Nhân Viên</option>
-											<option value="1">Admin</option>
-										</select>
-									</fieldset>
-									<fieldset class="form-group">
-										<h6>Trạng Thái</h6>
-										<select name="status" class="form-select"
-											id="status_modal">
-											<option value="Active" selected>Active</option>
-											<option value="Inactive">Inactive</option>
-										</select>
-									</fieldset>
 								</div>
 							</div>
 						</div>
